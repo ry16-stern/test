@@ -4,6 +4,9 @@
 import asyncio
 import random
 import easygui
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Calculate Winner function: Returns ("Its a Tie", "You won!", "You lost!")
 async def calc_winner(pick,rand):
     print("Computer chose: ",rand)
@@ -24,18 +27,19 @@ async def calc_winner(pick,rand):
         else:
             return "You lost!"
 
-
+#Main function: Asks interface type and allows to play again
 async def main_code():
     play_again= True
+    USER_NAME = os.getenv("USER_NAME") 
     while play_again==True:
-        gui=easygui.ynbox('Welcome to Rock, Paper, Scissors game, which interface do you prefer?', 'Title', ('GUI', 'Terminal'))
+        gui=easygui.ynbox('Welcome to Rock, Paper, Scissors game '+USER_NAME+', which interface do you prefer?', 'Title', ('GUI', 'Terminal'))
         options=["Rock","Paper","Scissors"]
         if gui==True: 
             #user selected GUI
             user_choice=easygui.buttonbox('Select Rock, Paper or Scissors', 'Pick', ('Rock', 'Paper', 'Scissors'))
             rand=random.choice(options)
             result=await calc_winner(user_choice,rand)
-            play_again=easygui.ynbox('Computer picked '+rand + ' '+result, 'Title', ('Play again', 'Quit'))
+            play_again=easygui.ynbox('Computer picked '+rand + ' '+result+ ' Thank you for playing!', 'Title', ('Play again', 'Quit'))
 
         else: 
             #user selected terminal
@@ -49,25 +53,13 @@ async def main_code():
                 break
             result=await calc_winner(user_choice,rand)
             print(result)
+            print("Thank you for playing")
             again=input("Play again? Y/N ")
             if (again=="N"):
                 print("Session terminated")
                 play_again=False
             
-
+#Asyncronous execution of the main function
 asyncio.run(main_code())
 
 
-    
-
-        
-            
-            
-
-     
-        
-#easygui.msgbox('This is a basic message fe
-# box.', 'Welcome to Rock, Paper, Scissors game')
-
-
-#

@@ -1,11 +1,11 @@
-# My First Repo!
+### Readme
 
-This is the README.md file. It uses the markdown language. The line above is a heading, starting with the # sign. Don't be confused that # means something different in .md and .py files.
+Required packages: 
+- easygui
+- random
+- asyncio
 
-We can make links like [this](https://github.com/prof-rossetti/intro-to-python).
-
-And lists too:
-
-  + Item 1
-  + Item 2
-  + Item 3
+There are two functions in the code and both are run asyncronously.
+The main function uses easygui prompt to ask which interface the player wants to use. Allowed options: GUI and Terminal
+Depending on the selection the app will run either in GUI or Terminal mode.
+In the end of each round the app will ask if the player wants to play again or quit. Depending on the answer the app will either start from the beginning or exit
